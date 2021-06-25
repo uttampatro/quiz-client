@@ -1,24 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { Redirect, Route, Switch } from "react-router-dom";
+import LoginPage from "./pages/login/Login";
+import Quiz from "./pages/quiz/Quiz";
 
 function App() {
+  const userExists = localStorage.getItem("user");
+  const isAuthenticated = userExists;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div className="app_body">
+        <Switch>
+          <Route exact path={"/"}>
+            <Redirect to={isAuthenticated ? "/quiz" : "/login"}></Redirect>
+          </Route>
+          <Route path={"/login"} component={LoginPage} />
+          <Route path={'/quiz'} component={Quiz} />
+        </Switch>
+      </div>
     </div>
   );
 }
