@@ -16,7 +16,7 @@ function App() {
             <Redirect to={isAuthenticated ? "/quiz" : "/login"}></Redirect>
           </Route>
           <Route path={"/login"} component={LoginPage} />
-          <Route path={'/quiz'} component={Quiz} />
+          <Route path={"/quiz"} component={Quiz} />
         </Switch>
       </div>
     </div>

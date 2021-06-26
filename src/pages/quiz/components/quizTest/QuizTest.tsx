@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { QuizContext } from "../../../../helper/Contexts";
 import { Questions } from "../../../../helper/QuestionBank";
-import "./QuizTest.css"
+import "./QuizTest.css";
 
 function QuizTest() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -24,7 +24,7 @@ function QuizTest() {
 
   return (
     <div className="Quiz">
-      <h1>{Questions[currentQuestion].prompt}</h1>
+      <h1 className="header">{Questions[currentQuestion].prompt}</h1>
       <div className="options">
         <button onClick={() => setOptionChosen("optionA")}>
           {Questions[currentQuestion].optionA}
@@ -41,9 +41,13 @@ function QuizTest() {
       </div>
 
       {currentQuestion === Questions.length - 1 ? (
-        <button className="button" onClick={finishQuiz}>Finish Quiz</button>
+        <button className="button" onClick={finishQuiz}>
+          Finish Quiz
+        </button>
       ) : (
-        <button className="button" onClick={nextQuestion}>Next Question</button>
+        <button className="button" onClick={nextQuestion}>
+          Next Question
+        </button>
       )}
     </div>
   );

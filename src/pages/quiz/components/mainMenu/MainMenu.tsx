@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { QuizContext } from "../../../../helper/Contexts";
-import "./MainMenu.css"
+import "./MainMenu.css";
 
 function MainMenu() {
   const { gameState, setGameState, userName, setUserName } =

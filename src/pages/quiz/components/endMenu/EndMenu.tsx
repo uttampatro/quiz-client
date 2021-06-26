@@ -13,12 +13,9 @@ function EndMenu() {
     setGameState("menu");
   };
 
-  const logout = () => {
-    try {
-      history.push("/login");
-    } catch (error) {
-      console.log(error);
-    }
+  const goToQuestionSets = () => {
+    setScore(0);
+    setGameState("questionSets");
   };
 
   return (
@@ -31,7 +28,7 @@ function EndMenu() {
       </h1>
       <button onClick={restartQuiz}>Restart Quiz</button>
       <h3>OR</h3>
-      <button onClick={logout}>Logout</button>
+      <button onClick={goToQuestionSets}>Back to question Sets</button>
     </div>
   );
 }
