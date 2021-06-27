@@ -7,10 +7,6 @@ function QuestionSets() {
   const { gameState, setGameState } = useContext(QuizContext);
   const history = useHistory();
 
-  //   const goToQuiz = () => {
-  //     setGameState("menu");
-  //   };
-
   const logout = () => {
     try {
       history.push("/login");
