@@ -1,12 +1,10 @@
 import React, { useContext } from "react";
-import { useHistory } from "react-router";
 import { QuizContext } from "../../../../helper/Contexts";
 import { Questions } from "../../../../helper/QuestionBank";
 import "./EndMenu.css";
 
 function EndMenu() {
   const { score, setScore, setGameState } = useContext(QuizContext);
-  const history = useHistory();
 
   const restartQuiz = () => {
     setScore(0);

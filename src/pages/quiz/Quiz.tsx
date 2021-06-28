@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { QuizContext } from "../../helper/Contexts";
 import MainMenu from "./components/mainMenu/MainMenu";
 import QuizTest from "./components/quizTest/QuizTest";
@@ -13,7 +13,7 @@ function Quiz() {
   return (
     <div className="quiz">
       {gameState === "questionSets" ? <></> : <h1>Quiz App</h1>}
-      
+
       <QuizContext.Provider
         value={{
           gameState,
