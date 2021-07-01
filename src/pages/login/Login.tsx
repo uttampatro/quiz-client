@@ -1,24 +1,27 @@
 import './Login.css';
 import { useState } from 'react';
+import userServices from '../../services/userServices';
+import { useHistory } from 'react-router';
 
 function LoginPage() {
+    const history = useHistory();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    
-    // const handleSignIn = async e => {
-    //     e.preventDefault();
-    //     try {
-    //         const user = await userService.login(email, password);
-    //         if (user) {
-    //             history.push('/chat');
-    //         } else {
-    //             alert('Invalid Credential');
-    //         }
-    //         console.log(user);
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // };
+
+    const handleSignIn = async (e: any) => {
+        e.preventDefault();
+        try {
+            const user = await userServices.login(email, password);
+            if (user) {
+                history.push('/quiz');
+            } else {
+                alert('Invalid Credential');
+            }
+            console.log(user);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
         <div className="login">
@@ -45,7 +48,7 @@ function LoginPage() {
                     />
                 </div>
 
-                <button className="login_button">
+                <button onClick={handleSignIn} className="login_button">
                     Sign In
                 </button>
             </form>
@@ -54,5 +57,3 @@ function LoginPage() {
 }
 
 export default LoginPage;
-
-

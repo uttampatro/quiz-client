@@ -2,13 +2,15 @@ import React, { useContext } from "react";
 import "./QuestionSets.css";
 import { useHistory } from "react-router";
 import { QuizContext } from "../../../../helper/Contexts";
+import userServices from "../../../../services/userServices";
 
 function QuestionSets() {
   const { gameState, setGameState } = useContext(QuizContext);
   const history = useHistory();
 
-  const logout = () => {
+  const logout = async () => {
     try {
+      await userServices.logout();
       history.push("/login");
     } catch (error) {
       console.log(error);

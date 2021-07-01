@@ -1,34 +1,40 @@
-import React, { useState } from "react";
-import { QuizContext } from "../../helper/Contexts";
-import MainMenu from "./components/mainMenu/MainMenu";
-import QuizTest from "./components/quizTest/QuizTest";
-import EndMenu from "./components/endMenu/EndMenu";
-import "./Quiz.css";
-import QuestionSets from "./components/questionSets/QuestionSets";
+import React, { useContext, useState } from 'react';
+import { QuizContext } from '../../helper/Contexts';
+import MainMenu from './components/mainMenu/MainMenu';
+import QuizTest from './components/quizTest/QuizTest';
+import EndMenu from './components/endMenu/EndMenu';
+import './Quiz.css';
+import QuestionSets from './components/questionSets/QuestionSets';
 
 function Quiz() {
-  const [gameState, setGameState] = useState("questionSets");
-  const [score, setScore] = useState(0);
+    const [gameState, setGameState] = useState('questionSets');
+    const [score, setScore] = useState(0);
+    const User = localStorage.getItem('user');
+    const userExist = User ? JSON.parse(User) : undefined;
 
-  return (
-    <div className="quiz">
-      {gameState === "questionSets" ? <></> : <h1>Quiz App</h1>}
+    if (!userExist) {
+        return <>Loading...</>;
+    }
 
-      <QuizContext.Provider
-        value={{
-          gameState,
-          setGameState,
-          score,
-          setScore,
-        }}
-      >
-        {gameState === "menu" && <MainMenu />}
-        {gameState === "quiz" && <QuizTest />}
-        {gameState === "endScreen" && <EndMenu />}
-        {gameState === "questionSets" && <QuestionSets />}
-      </QuizContext.Provider>
-    </div>
-  );
+    return (
+        <div className="quiz">
+            {gameState === 'questionSets' ? <></> : <h1>Quiz App</h1>}
+
+            <QuizContext.Provider
+                value={{
+                    gameState,
+                    setGameState,
+                    score,
+                    setScore,
+                }}
+            >
+                {gameState === 'menu' && <MainMenu />}
+                {gameState === 'quiz' && <QuizTest />}
+                {gameState === 'endScreen' && <EndMenu />}
+                {gameState === 'questionSets' && <QuestionSets />}
+            </QuizContext.Provider>
+        </div>
+    );
 }
 
 export default Quiz;
