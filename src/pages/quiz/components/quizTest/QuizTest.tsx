@@ -11,15 +11,14 @@ function QuizTest() {
         useContext(QuizContext);
 
     const nextQuestion = () => {
-        if (allQuizList[currentQuestion].answer === optionChosen) {
+        if (Questions[currentQuestion].answer === optionChosen) {
             setScore(score + 1);
         }
         setCurrentQuestion(currentQuestion + 1);
     };
-    console.log(nextQuestion)
 
     const finishQuiz = () => {
-        if (allQuizList[currentQuestion].answer === optionChosen) {
+        if (Questions[currentQuestion].answer === optionChosen) {
             setScore(score + 1);
         }
         setGameState('endScreen');
