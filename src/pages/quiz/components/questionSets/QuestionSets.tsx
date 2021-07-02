@@ -10,7 +10,7 @@ function QuestionSets() {
     const { gameState, setGameState, allQuizList, setAllQuizList } =
         useContext(QuizContext);
     const [questionSet, setQuestionSet] = useState([]);
- 
+
     const history = useHistory();
 
     const fetchQuestionSet = async () => {

@@ -11,29 +11,21 @@ function QuizTest() {
         useContext(QuizContext);
 
     const nextQuestion = () => {
-        if (Questions[currentQuestion].answer === optionChosen) {
-            setScore(score + 1);
-        }
-        setCurrentQuestion(currentQuestion + 1);
+        // if (Questions[currentQuestion].answer === optionChosen) {
+        //     setScore(score + 1);
+        // }
+        // setCurrentQuestion(currentQuestion + 1);
     };
 
     const finishQuiz = () => {
-        if (Questions[currentQuestion].answer === optionChosen) {
-            setScore(score + 1);
-        }
-        setGameState('endScreen');
+        // if (Questions[currentQuestion].answer === optionChosen) {
+        //     setScore(score + 1);
+        // }
+        // setGameState('endScreen');
     };
 
     return (
         <div className="Quiz">
-            {/* {allQuizList.map((allQuiz: IQuiz) => {
-                return (
-                    // <h1 className="header">{allQuizList[currentQuestion].question}</h1>
-                    <button onClick={() => setOptionChosen('')}>
-                        {allQuiz.options[0]}
-                    </button>
-                );
-            })} */}
             <h1 className="header">{allQuizList[currentQuestion].question}</h1>
             <div className="options">
                 <button onClick={() => setOptionChosen('optionA')}>
