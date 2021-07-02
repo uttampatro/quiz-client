@@ -4,7 +4,7 @@ import { Questions } from "../../../../helper/QuestionBank";
 import "./EndMenu.css";
 
 function EndMenu() {
-  const { score, setScore, setGameState } = useContext(QuizContext);
+  const { score, setScore, setGameState, allQuizList, setAllQuizList } = useContext(QuizContext);
 
   const restartQuiz = () => {
     setScore(0);
@@ -22,7 +22,7 @@ function EndMenu() {
       {/* <h3>{userName}</h3> */}
       <h1>
         {" "}
-        {score} / {Questions.length}{" "}
+        {score} / {allQuizList.length}{" "}
       </h1>
       <button onClick={restartQuiz}>Restart Quiz</button>
       <h3>OR</h3>

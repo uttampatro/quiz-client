@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { QuizContext } from '../../helper/Contexts';
-import MainMenu from './components/mainMenu/MainMenu';
+import MainMenu, { IQuiz } from './components/mainMenu/MainMenu';
 import QuizTest from './components/quizTest/QuizTest';
 import EndMenu from './components/endMenu/EndMenu';
 import './Quiz.css';
@@ -9,6 +9,7 @@ import QuestionSets from './components/questionSets/QuestionSets';
 function Quiz() {
     const [gameState, setGameState] = useState('questionSets');
     const [score, setScore] = useState(0);
+    const [allQuizList, setAllQuizList] = useState<IQuiz[]>([]);
     const User = localStorage.getItem('user');
     const userExist = User ? JSON.parse(User) : undefined;
 
@@ -26,6 +27,8 @@ function Quiz() {
                     setGameState,
                     score,
                     setScore,
+                    allQuizList,
+                    setAllQuizList,
                 }}
             >
                 {gameState === 'menu' && <MainMenu />}
