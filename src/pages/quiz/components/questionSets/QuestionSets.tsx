@@ -45,6 +45,14 @@ function QuestionSets() {
         }
     };
 
+    const addQuestionSet = async () => {
+        try {
+            history.push('/addQuestionSet')
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     return (
         <div className="question">
             <div className="questionSets">
@@ -56,6 +64,7 @@ function QuestionSets() {
                 </div>
                 <div className="question_button">
                     <button onClick={logout}>Logout</button>
+                    <button onClick={addQuestionSet}>Add Question Set</button>
                 </div>
             </div>
 

@@ -26,7 +26,6 @@ export class UsersService implements IUsersService {
                     password,
                 }
             );
-
             //step2: save user in localStorage
             if (response.data) {
                 localStorage.setItem('user', JSON.stringify(response.data));
