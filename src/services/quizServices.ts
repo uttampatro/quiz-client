@@ -20,7 +20,6 @@ export class QuizService implements IQuizService {
             const response = await axios.get(
                 `${config.apiConfig.baseUrl}/v1/questionSet`
             );
-            console.log(response.data);
             return response.data;
         } catch (error) {
             console.log(error);
@@ -31,7 +30,6 @@ export class QuizService implements IQuizService {
             const response = await axios.get(
                 `${config.apiConfig.baseUrl}/v1/allQuiz/${questionSetId}`
             );
-            // console.log(response.data);
             return response.data;
         } catch (error) {
             console.log(error);
@@ -75,7 +73,6 @@ export class QuizService implements IQuizService {
                     questionSetId,
                 }
             );
-            // debugger;
             return response.data;
         } catch (error) {
             console.log(error);

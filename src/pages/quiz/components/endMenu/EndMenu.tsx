@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { QuizContext } from "../../../../helper/Contexts";
-import { Questions } from "../../../../helper/QuestionBank";
 import "./EndMenu.css";
 
 function EndMenu() {
@@ -19,7 +18,6 @@ function EndMenu() {
   return (
     <div className="EndScreen">
       <h1>Quiz Finished</h1>
-      {/* <h3>{userName}</h3> */}
       <h1>
         {" "}
         {score} / {allQuizList.length}{" "}

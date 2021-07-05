@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import { QuizContext } from '../../../../helper/Contexts';
-import { Questions } from '../../../../helper/QuestionBank';
 import { IQuiz } from '../mainMenu/MainMenu';
 import './QuizTest.css';
 
