@@ -4,19 +4,21 @@ import QuizService from '../../../../services/quizServices';
 import './AddQuestionSet.css';
 
 function AddQuestionSet() {
+    const User = localStorage.getItem('user');
+    const user = User ? JSON.parse(User) : undefined;
     const [name, setName] = useState('');
     const history = useHistory();
 
-    const questions = async (e: any) => {
+    const addQuestions = async (e: any) => {
         e.preventDefault();
         try {
-            const addQuestion = await QuizService.addQuestionSet(name);
-            if (addQuestion) {
+            const response = await QuizService.addQuestionSet(name, user.id);
+            if (response) {
                 history.push('/questions');
             } else {
                 alert('Name must not be empty!!');
             }
-            console.log(addQuestion);
+            console.log(response);
         } catch (error) {
             console.log(error);
         }
@@ -35,7 +37,7 @@ function AddQuestionSet() {
                         onChange={e => setName(e.target.value)}
                     />
                 </div>
-                <button onClick={questions}>Next</button>
+                <button onClick={addQuestions}>Next</button>
             </form>
         </div>
     );

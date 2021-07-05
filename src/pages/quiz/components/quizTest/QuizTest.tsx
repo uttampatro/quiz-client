@@ -6,20 +6,20 @@ import './QuizTest.css';
 
 function QuizTest() {
     const [currentQuestion, setCurrentQuestion] = useState(0);
-    const [optionChosen, setOptionChosen] = useState('');
+    const [optionIndex, setOptionIndex] = useState<number>();
     const { score, setScore, setGameState, allQuizList, setAllQuizList } =
         useContext(QuizContext);
 
     const nextQuestion = () => {
-        if (allQuizList[currentQuestion].answer === optionChosen) {
+        if (allQuizList[currentQuestion].answerIndex === optionIndex) {
             setScore(score + 1);
         }
         setCurrentQuestion(currentQuestion + 1);
     };
-    console.log(nextQuestion)
+    console.log(nextQuestion);
 
     const finishQuiz = () => {
-        if (allQuizList[currentQuestion].answer === optionChosen) {
+        if (allQuizList[currentQuestion].answerIndex === optionIndex) {
             setScore(score + 1);
         }
         setGameState('endScreen');
@@ -29,18 +29,15 @@ function QuizTest() {
         <div className="Quiz">
             <h1 className="header">{allQuizList[currentQuestion].question}</h1>
             <div className="options">
-                <button onClick={() => setOptionChosen(allQuizList[currentQuestion].options[0])}>
-                    {allQuizList[currentQuestion].options[0]}
-                </button>
-                <button onClick={() => setOptionChosen(allQuizList[currentQuestion].options[1])}>
-                    {allQuizList[currentQuestion].options[1]}
-                </button>
-                <button onClick={() => setOptionChosen(allQuizList[currentQuestion].options[2])}>
-                    {allQuizList[currentQuestion].options[2]}
-                </button>
-                <button onClick={() => setOptionChosen(allQuizList[currentQuestion].options[3])}>
-                    {allQuizList[currentQuestion].options[3]}
-                </button>
+                {allQuizList[currentQuestion].options.map(
+                    (option: any, i: number) => {
+                        return (
+                            <button onClick={() => setOptionIndex(i)}>
+                                {option}
+                            </button>
+                        );
+                    }
+                )}
             </div>
 
             {currentQuestion === allQuizList.length - 1 ? (

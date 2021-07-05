@@ -7,6 +7,8 @@ import QuizService from '../../../../services/quizServices';
 import { IQuiz } from '../mainMenu/MainMenu';
 
 function QuestionSets() {
+    const User = localStorage.getItem('user');
+    const user = User ? JSON.parse(User) : undefined;
     const { gameState, setGameState, allQuizList, setAllQuizList } =
         useContext(QuizContext);
     const [questionSet, setQuestionSet] = useState([]);
@@ -47,11 +49,12 @@ function QuestionSets() {
 
     const addQuestionSet = async () => {
         try {
-            history.push('/addQuestionSet')
+            // const user =
+            history.push('/addQuestionSet');
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
     return (
         <div className="question">
@@ -63,13 +66,21 @@ function QuestionSets() {
                     <h1>Quiz Paper</h1>
                 </div>
                 <div className="question_button">
-                    <button onClick={logout}>Logout</button>
-                    <button onClick={addQuestionSet}>Add Question Set</button>
+                    {user.role === 'Admin' ? (
+                        <div className="question_button">
+                            <button onClick={logout}>Logout</button>
+                            <button onClick={addQuestionSet}>
+                                Add Question Set
+                            </button>
+                        </div>
+                    ) : (
+                        <button onClick={logout}>Logout</button>
+                    )}
                 </div>
             </div>
 
             <div className="bodySets">
-                {questionSet.map((question: any) => {
+                {questionSet?.map((question: any) => {
                     return (
                         <div className="body">
                             <h3>{question.name}</h3>

@@ -6,9 +6,8 @@ import './MainMenu.css';
 export interface IQuiz {
     id: number;
     question: string;
-    answer: string;
+    answerIndex: number;
     options: Array<string>;
-    // currentQuestion: Array<number>;
 }
 
 function MainMenu() {

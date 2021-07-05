@@ -5,7 +5,13 @@ import { IQuiz } from '../pages/quiz/components/mainMenu/MainMenu';
 export interface IQuizService {
     getQuestionSet(): Promise<any[]>;
     getAllQuiz(questionSetId: string): Promise<IQuiz[]>;
-    addQuestionSet(name: string): Promise<any>;
+    addQuestionSet(name: string, userId: number): Promise<any>;
+    addQuestions(
+        question: string,
+        answerIndex: number,
+        options: string[],
+        questionSetId: number
+    ): Promise<any[]>;
 }
 
 export class QuizService implements IQuizService {
@@ -14,7 +20,7 @@ export class QuizService implements IQuizService {
             const response = await axios.get(
                 `${config.apiConfig.baseUrl}/v1/questionSet`
             );
-            // console.log(response.data);
+            console.log(response.data);
             return response.data;
         } catch (error) {
             console.log(error);
@@ -32,17 +38,48 @@ export class QuizService implements IQuizService {
             return [];
         }
     }
-    async addQuestionSet(name: string): Promise<any> {
+    async addQuestionSet(name: string, userId: number): Promise<any> {
         try {
             const response = await axios.post(
                 `${config.apiConfig.baseUrl}/v1/addQuestionSet`,
                 {
                     name,
+                    userId,
                 }
             );
+            if (response.data) {
+                localStorage.setItem(
+                    'questionSet',
+                    JSON.stringify(response.data)
+                );
+            }
+
             return response.data;
         } catch (error) {
             console.log(error);
+        }
+    }
+    async addQuestions(
+        question: string,
+        answerIndex: number | undefined,
+        options: string[],
+        questionSetId: number
+    ): Promise<any[]> {
+        try {
+            const response = await axios.post(
+                `${config.apiConfig.baseUrl}/v1/addQuestions`,
+                {
+                    question,
+                    answerIndex,
+                    options,
+                    questionSetId,
+                }
+            );
+            // debugger;
+            return response.data;
+        } catch (error) {
+            console.log(error);
+            return [];
         }
     }
 }
